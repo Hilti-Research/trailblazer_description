@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="calibration" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="spawn_calibrated_link" params="name parent dict_key">
+    <link name="${name}" />
+    <joint name="${name}_joint" type="fixed">
+      <origin
+        xyz="${calibration[dict_key]['x']} ${calibration[dict_key]['y']} ${calibration[dict_key]['z']}"
+        rpy="${calibration[dict_key]['roll']} ${calibration[dict_key]['pitch']} ${calibration[dict_key]['yaw']}" />
+      <parent link="${parent}" />
+      <child link="${name}" />
+    </joint>
+  </xacro:macro>
+
+</robot>

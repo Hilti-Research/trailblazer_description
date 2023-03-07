@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="oak_d_pro_w_poe">
+  <xacro:macro name="oak_d_pro_w_poe" params="name parent xyz rpy">
+
+    <!-- Mount joint -->
+    <joint name="${name}_mount_joint" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}" />
+      <parent link="${parent}" />
+      <child link="${name}_mount" />
+    </joint>
+
+    <!-- Mount link -->
+    <link name="${name}_mount">
+      <inertial>
+        <mass value="0.184" />
+        <origin xyz="0 0 0" />
+        <!-- Pretend scanner is a solid and homogeneous cylinder -->
+        <inertia ixx="${0.5 * 0.184 * 0.1 * 0.1}" ixy="0" ixz="0"
+          iyy="${0.5 * 0.184 * 0.1 * 0.1}" iyz="0"
+          izz="${0.25 * 0.184 * 0.1 * 0.1 + 0.184 * 0.111 * 0.111 / 12 }" />
+      </inertial>
+      <visual>
+        <origin rpy="0 0 ${PI}" xyz="0.044 -0.015 0.022" />
+        <material name="silver">
+          <color rgba="0 0 0 1" />
+        </material>
+        <geometry>
+          <mesh
+            filename="package://trailblazer_description/meshes/sensors/visual/oak_d_pro_w_poe.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0.0555" />
+        <geometry>
+          <cylinder radius="0.05" length="0.111" />
+        </geometry>
+      </collision>
+    </link>
+
+  </xacro:macro>
+</robot>

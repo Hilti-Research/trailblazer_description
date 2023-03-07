@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+  <arg name="description_name" default="robot_description" />
+  <arg name="description_file" default="$(find trailblazer_description)/urdf/trailblazer.urdf.xacro" />
+
+  <param name="$(arg description_name)" command="$(find xacro)/xacro $(arg description_file)" />
+</launch>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+  <!-- Load the description -->
+  <include file="$(find trailblazer_description)/launch/load.launch" />
+
+  <!-- Launch the robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+  </node>
+
+  <!-- Open Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz"
+    args="-d $(find trailblazer_description)/rviz/trailblazer.rviz"
+    output="screen" />
+
+</launch>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- Single track for TrailBlazer -->
+<robot name="track_collision" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="track_collision" params="name parent width height length mass xyz rpy">
+    <link name="${name}_link">
+      <collision>
+        <geometry>
+          <cylinder length="${width}" radius="${height/2.0}" />
+        </geometry>
+        <origin rpy="${PI/2.0} 0 0" xyz="${(length-height)/2.0} 0 ${height/2.0}" />
+      </collision>
+      <collision>
+        <geometry>
+          <cylinder length="${width}" radius="${height/2.0}" />
+        </geometry>
+        <origin rpy="${PI/2.0} 0 0" xyz="${-(length-height)/2.0} 0 ${height/2.0}" />
+      </collision>
+      <collision>
+        <geometry>
+          <box size="${length-height} ${width} ${height}" />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 ${height/2.0}" />
+      </collision>
+
+      <inertial>
+        <origin xyz="0 0 ${height/2.0}" rpy="0 0 0" />
+        <mass value="${mass}" />
+        <inertia
+          ixx="${1/12.0*mass*(width*width+height*height)}"
+          iyy="${1/12.0*mass*(length*length+height*height)}"
+          izz="${1/12.0*mass*(length*length+width*width)}"
+          ixy="0" ixz="0" iyz="0"
+        />
+      </inertial>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+      <origin xyz="${xyz}" rpy="${rpy}" />
+    </joint>
+
+    <gazebo reference="{name}_link">
+      <selfCollide>false</selfCollide>
+      <static>false</static>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot name="constants" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="PI" value="3.1415926535897931" />
+  
+  <xacro:property name="track_mass" value="20.0" />
+  <xacro:property name="track_height" value="0.29" />
+  <xacro:property name="track_length" value="1.345" />
+  <xacro:property name="track_width" value="0.17" />
+  <xacro:property name="track_spacing" value="0.64" />
+  <xacro:property name="track_x_shift" value="-0.0" />
+  
+  <material name="red">
+    <color rgba="1 0 0 1" />
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1" />
+  </material>
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1" />
+  </material>
+  <material name="silver">
+    <color rgba="0.7 0.7 0.7 1" />
+  </material>
+</robot>

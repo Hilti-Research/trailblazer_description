@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<robot name="chassis" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="chassis" params="name parent mass xyz rpy">
+
+    <joint name="${name}_joint" type="fixed">
+      <origin xyz="${xyz}" rpy="${rpy}" />
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+    </joint>
+
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2.0} 0 ${-PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/visual/track_base.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="black" />
+      </visual>
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2.0} 0 ${-PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/visual/column.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="silver" />
+      </visual>
+      <visual>
+        <origin xyz="0 0 0.32" rpy="0 0 ${PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/visual/main_body.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="red" />
+      </visual>
+      <visual>
+        <origin xyz="0 0 0.32" rpy="0 0 ${PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/visual/main_body_logos.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="white" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0.32" rpy="0 0 ${-PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/collision/main_body.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI/2.0} 0 ${-PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/collision/column.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <collision>
+        <origin xyz="0 0 0" rpy="${PI/2.0} 0 ${-PI/2.0}" />
+        <geometry>
+          <mesh filename="package://trailblazer_description/meshes/robot/collision/track_base.stl"
+            scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="${mass}"/>
+        <inertia ixx="${0.09130208333*mass}" ixy="0.0" ixz="0.0" iyy="${0.19853333333*mass}" iyz="0.0" izz="${0.18316875*mass}"/>
+      </inertial>
+    </link>
+
+    <!-- Add track collisions -->
+    <xacro:include filename="$(find trailblazer_description)/urdf/track_collision.urdf.xacro" />
+    <xacro:track_collision name="left_track" parent="${name}_link"
+      width="${track_width}" height="${track_height}" length="${track_length}"
+      mass="${track_mass}" xyz="${track_x_shift} ${track_spacing/2.0} 0" rpy="0 0 0" />
+    <xacro:track_collision name="right_track" parent="${name}_link"
+      width="${track_width}" height="${track_height}" length="${track_length}"
+      mass="${track_mass}" xyz="${track_x_shift} ${-track_spacing/2.0} 0" rpy="0 0 ${PI}" />
+
+    <!-- Add UR mount -->
+    <link name="ur_mount" />
+    <joint name="ur_mount_joint" type="fixed">
+      <origin xyz="0.592 0 1.71" rpy="0 0 0" />
+      <parent link="${name}_link" />
+      <child link="ur_mount" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>

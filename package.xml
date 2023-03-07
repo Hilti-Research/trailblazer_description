@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>trailblazer_description</name>
+  <version>0.1.0</version>
+  <description>URDF files for Trailblazer.</description>
+  <maintainer email="julien.kindle@hilti.com">Julien Kindle</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roslaunch</depend>
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+</package>
