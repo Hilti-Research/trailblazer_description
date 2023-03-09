@@ -32,19 +32,19 @@
   <!-- Add OAK Cameras -->
   <xacro:include filename="$(find trailblazer_description)/urdf/sensors/oak_d_pro_w_poe.urdf.xacro"/>
 
-  <xacro:oak_d_pro_w_poe name="oak_cam_front" parent="xsens_imu_link" xyz="0.065 0 -0.035" rpy="2.704 0 ${-PI/2.0}"/>
+  <xacro:oak_d_pro_w_poe name="oak_cam_front" parent="xsens_imu_link" xyz="0.065 0 -0.035" rpy="${155/180.0*PI} 0 ${-PI/2.0}"/>
   <xacro:spawn_calibrated_link name="oak_cam_front_left_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam0"/>
   <xacro:spawn_calibrated_link name="oak_cam_front_right_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam1"/>
 
-  <xacro:oak_d_pro_w_poe name="oak_cam_left" parent="xsens_imu_link" xyz="0.26 0.365 0.65" rpy="-2.754 ${PI/2.0} -0.953"/>
+  <xacro:oak_d_pro_w_poe name="oak_cam_left" parent="xsens_imu_link" xyz="0.26 0.36 0.67" rpy="${-105/180.0*PI} ${PI/2.0} 0"/>
   <xacro:spawn_calibrated_link name="oak_cam_left_left_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam2"/>
   <xacro:spawn_calibrated_link name="oak_cam_left_right_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam3"/>
 
-  <xacro:oak_d_pro_w_poe name="oak_cam_rear" parent="xsens_imu_link" xyz="0.234 -0.0 1.34" rpy="-0.428 0 ${PI/2.0}"/>
+  <xacro:oak_d_pro_w_poe name="oak_cam_rear" parent="xsens_imu_link" xyz="0.245 0 1.34" rpy="${-25/180.0*PI} 0 ${PI/2.0}"/>
   <xacro:spawn_calibrated_link name="oak_cam_rear_left_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam4"/>
   <xacro:spawn_calibrated_link name="oak_cam_rear_right_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam5"/>
 
-  <xacro:oak_d_pro_w_poe name="oak_cam_right" parent="xsens_imu_link" xyz="0.259 -0.36 0.67" rpy="-1.076 ${-PI/2.0} 2.382"/>
+  <xacro:oak_d_pro_w_poe name="oak_cam_right" parent="xsens_imu_link" xyz="0.26 -0.36 0.67" rpy="${75/180.0*PI} ${-PI/2.0} 0"/>
   <xacro:spawn_calibrated_link name="oak_cam_right_left_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam6"/>
   <xacro:spawn_calibrated_link name="oak_cam_right_right_camera_optical_frame" parent="xsens_imu_link" dict_key="T_imu0_cam7"/>
 
